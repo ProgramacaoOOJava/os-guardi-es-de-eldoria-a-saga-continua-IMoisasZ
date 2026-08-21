@@ -1,4 +1,4 @@
-package Tema2.novato.desafio;
+package desafio;
 
 // Classe mago
 public class Mago extends Personagem {
@@ -14,6 +14,6 @@ public class Mago extends Personagem {
     // Sobrescrevendo o metodo da classe pai
     @Override
     public void usarHabilidade() {
-        System.out.println(exibirStatus() + "\nHabilidade: " + habilidade);
+        System.out.println("Habilidade: " + habilidade);
     }
 }

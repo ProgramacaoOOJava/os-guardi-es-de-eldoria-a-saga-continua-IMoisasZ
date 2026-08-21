@@ -1,4 +1,6 @@
-package Tema2.novato.desafio;
+package desafio;
+
+import java.util.Objects;
 
 // Classe personagem
 public abstract class Personagem {
@@ -17,10 +19,12 @@ public abstract class Personagem {
         this.poderBase = poderBase;
     }
 
-    // metodo abstrato com ashabilidades especificas de cada personagem que deve ser
-    // implementada de acordo
-    public abstract void usarHabilidade();
+    // metodo que deve ser sobrescrito pelas subclasses especificas.
+    public void usarHabilidade() {
+        System.out.println("Habilidade...");
+    }
 
+    // Metodo para exibir as informações dos personagens
     public String exibirStatus() {
         return "\nNome: " + nome + "\nClasse: " + classe + "\nNivel: " + nivel + "\nPontos de vida: "
                 + pontosDeVida + "\nPoder base: " + poderBase;
@@ -49,28 +53,71 @@ public abstract class Personagem {
 
     // setters
     public String setNome(String nome) {
-        this.nome = nome;
-        return this.nome;
+        if (nome != null && !nome.trim().isEmpty()) {
+            this.nome = nome;
+            return this.nome;
+        }
+        return nome;
     }
 
     public String setClasse(String classe) {
-        this.classe = classe;
-        return this.classe;
+        if (classe != null && !classe.trim().isEmpty()) {
+            this.classe = classe;
+            return this.classe;
+        }
+        return classe;
     }
 
     public int setNivel(int nivel) {
-        this.nivel = nivel;
-        return this.nivel;
+        if (nivel >= 1 && nivel <= 10) {
+            this.nivel = nivel;
+            return this.nivel;
+        }
+        return nivel;
     }
 
     public int setPontosDeVida(int pontosDeVida) {
-        this.pontosDeVida = pontosDeVida;
-        return this.pontosDeVida;
+        if (pontosDeVida >= 1 && pontosDeVida <= 10) {
+            this.pontosDeVida = pontosDeVida;
+            return this.pontosDeVida;
+        }
+        return pontosDeVida;
     }
 
     public double setPoderBase(double poderBase) {
-        this.poderBase = poderBase;
-        return this.poderBase;
+        if (pontosDeVida >= 1 && pontosDeVida <= 100.00) {
+            this.poderBase = poderBase;
+            return this.poderBase;
+        }
+        return pontosDeVida;
+    }
+
+    // Sobrescrevendo o metodo toString()
+    @Override
+    public String toString() {
+        return "\nNome: " + nome +
+                "\nClasse: " + classe +
+                "\nNivel: " + nivel +
+                "\nPontos de vida: " + pontosDeVida +
+                "\nPoder base: " + poderBase;
+    }
+
+    // Sobrecrevendo o metodo equals()
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        Personagem personagem = (Personagem) obj;
+        return nome.equals(personagem.nome) && classe.equals(personagem.classe);
+    }
+
+    // Sobrescrevendo o metodo hashCode()
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, classe);
     }
 
 }
