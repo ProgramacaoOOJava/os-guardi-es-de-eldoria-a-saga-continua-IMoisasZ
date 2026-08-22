@@ -19,15 +19,13 @@ public abstract class Personagem {
         this.poderBase = poderBase;
     }
 
-    // metodo que deve ser sobrescrito pelas subclasses especificas.
-    public void usarHabilidade() {
-        System.out.println("Habilidade...");
-    }
+    // metodo abstrato que deve ser sobrescrito pelas subclasses especificas.
+    public abstract void usarHabilidade();
 
     // Metodo para exibir as informações dos personagens
     public String exibirStatus() {
-        return "\nNome: " + nome + "\nClasse: " + classe + "\nNivel: " + nivel + "\nPontos de vida: "
-                + pontosDeVida + "\nPoder base: " + poderBase;
+        return "\n Nome: " + nome + "\nClasse: " + classe + "\nNivel: "
+                + nivel + "\nPontos de vida: " + pontosDeVida + "\nPoder base: " + poderBase;
     }
 
     // getters
@@ -118,6 +116,13 @@ public abstract class Personagem {
     @Override
     public int hashCode() {
         return Objects.hash(nome, classe);
+    }
+
+    // Metodo atribuir benção
+    protected void atribuirBencao(double valor) {
+        if (valor > 0) {
+            this.poderBase += valor;
+        }
     }
 
 }

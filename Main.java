@@ -26,51 +26,47 @@ public class Main {
                 // Mostrando os herois cadastrados
                 System.out.print("\n=== CADASTRO DOS HEROIS ===");
                 for (Personagem p : herois) {
-                        // Utilizando o metodo toString()
-                        System.out.println(p.toString());
+                        // Utilizando o metodo exibirStatus()
+                        System.out.println(p.exibirStatus());
 
+                        System.out.println("\n --- Usando habilidade ---");
                         p.usarHabilidade();
 
-                        // Verificando qual a instancia de cada personagem
-                        System.out.print(
-                                        "\n-------------------------- Verificando qual é a classe implementada -------------------------------\n");
-                        if (p instanceof Guerreiro) {
-                                Guerreiro g = (Guerreiro) p;
-                                System.out.println("O personagem " + g.getNome() + " é um Guerreiro");
-                        } else if (p instanceof Mago) {
-                                Mago m = (Mago) p;
-                                System.out.println("O personagem " + m.getNome() + " é um Mago");
-                        }
                         System.out.print(
                                         "---------------------------------------------------------------------------------------------------\n");
 
                 }
 
+                // Verificando qual a instancia de cada personagem
+                System.out.print(
+                                "\n-------- Apresentando as habilidades utilizadas incluidas na lista de ações (Apenas para os magos) ---------\n");
+                for (Personagem p1 : herois) {
+                        if (p1 instanceof Mago) {
+                                Mago m1 = (Mago) p1;
+                                m1.registrarAcao("O Mago" + m1.getNome() + " usou a habilidade " + m1.habilidade);
+                                m1.auditarAcoes();
+                        }
+
+                }
+
                 System.out.print("\n");
 
-                System.out.print(
-                                "\n ---------------------------------- Comparando com equals() ---------------------------------------\n");
-                // Comparando 2 Personagens
-                Personagem p1 = herois.get(0);
-                Personagem p2 = herois.get(1);
-                Personagem p3 = herois.get(2);
-                Personagem p4 = herois.get(3);
+                for (Personagem p3 : herois) {
+                        if (p3 instanceof Mago) {
+                                Mago m1 = (Mago) p3;
+                                m1.atribuirBencao(20);
+                        } else if (p3 instanceof Guerreiro) {
+                                Guerreiro g1 = (Guerreiro) p3;
+                                g1.atribuirBencao(30);
+                        }
 
-                System.out.println("Os personagens " + p1.getNome() + " e " + p2.getNome() + " são " + p1.equals(p2));
-                System.out.println("Os personagens " + p1.getNome() + " e " + p1.getNome() + " são " + p1.equals(p1));
-                System.out.println("Os personagens " + p3.getNome() + " e " + p2.getNome() + " são " + p3.equals(p2));
-                System.out.println("Os personagens " + p4.getNome() + " e " + p4.getNome() + " são " + p4.equals(p4));
+                }
 
-                System.out.print(
-                                "\n ---------------------------------- hashCode dos objetos ------------------------------------------\n");
+                // Exibindo status dos personagens novamente
+                System.out.print("\n ---- Exibindo status dos personagens após atribuir benção ----");
+                for (Personagem p3 : herois) {
+                        System.out.println(p3);
+                }
 
-                System.out.println("hashCode do personagem " + p1.getNome() + " com a classe " + p1.getClasse() + " é: "
-                                + p1.hashCode());
-                System.out.println("hashCode do personagem " + p2.getNome() + " com a classe " + p2.getClasse() + " é: "
-                                + p2.hashCode());
-                System.out.println("hashCode do personagem " + p3.getNome() + " com a classe " + p3.getClasse() + " é: "
-                                + p3.hashCode());
-                System.out.println("hashCode do personagem " + p4.getNome() + " com a classe " + p4.getClasse() + " é: "
-                                + p4.hashCode());
         }
 }
